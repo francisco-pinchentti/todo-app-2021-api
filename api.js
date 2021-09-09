@@ -99,14 +99,18 @@ const putTodos = (req, res, next) => {
 		id
 	];
 
-	db.run('UPDATE todos SET description=?, isDone=? WHERE rowid=?', params, function (err, rows) {
-		if (err) {
-			next(err);
-		} else {
-			res.send();
-			next();
-		}
-	});
+	db
+		.serialize(() => {
+			db.run('UPDATE todos SET description=?, isDone=? WHERE rowid=?', params)
+		})
+		.get('SELECT rowid, description, isDone FROM todos WHERE rowid=?', [id], (err, row) => {
+			if (err) {
+				next(err);
+			} else {
+				res.send(row);
+				next();
+			}
+		});
 }
 
 // wiring

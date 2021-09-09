@@ -17,25 +17,25 @@ Very self-explanatory config.json is included.
 ## List
 
 ```cURL
-curl -v -X GET http://localhost:8080/todos
+curl -v -X GET http://localhost:8080/api/todos
 ```
 
 ## Create
 
 ```cURL
 
-curl -v -X POST -H "Content-Type: application/json" -d '{"description": "Lorem Ipsum", "isDone": false}' http://localhost:8080/todos
+curl -v -X POST -H "Content-Type: application/json" -d '{"description": "Lorem Ipsum", "isDone": false}' http://localhost:8080/api/todos
 
 ```
 
 ## Delete
 
 ```cURL
-curl -v -X DELETE http://localhost:8080/todos/<id>
+curl -v -X DELETE http://localhost:8080/api/todos/<id>
 ```
 
 ## Update
 
 ```cURL
-curl -v -X PUT -H "Content-Type: application/json" -d '{"description": "Lorem Ipsum", "isDone": false}' http://localhost:8080/todos/<id>
+curl -v -X PUT -H "Content-Type: application/json" -d '{"description": "Lorem Ipsum", "isDone": false}' http://localhost:8080/api/todos/<id>
 ```
