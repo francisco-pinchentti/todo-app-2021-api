@@ -1,0 +1,17 @@
+{
+  "name": "todo-api",
+  "version": "1.0.0",
+  "description": "A mini REST api using sqlite & restify for POC purpouses",
+  "main": "api.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "node init-db.js",
+    "start": "node api.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "restify": "^8.5.1",
+    "sqlite3": "^5.0.2"
+  }
+}
