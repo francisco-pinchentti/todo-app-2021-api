@@ -1,6 +1,7 @@
 const sqlite3 = require('sqlite3').verbose();
 const restify = require('restify');
 const config = require('./config.json');
+const corsMiddleware = require('restify-cors-middleware')
 
 // initialization
 
@@ -17,6 +18,13 @@ const db = new sqlite3.Database(
 );
 
 const server = restify.createServer();
+
+const cors = corsMiddleware({
+	origins: ['http://localhost:3000']
+});
+
+server.pre(cors.preflight);
+server.use(cors.actual);
 
 // request handlers
 
@@ -105,10 +113,10 @@ const putTodos = (req, res, next) => {
 
 server.use(restify.plugins.bodyParser());
 
-server.get('/todos', getTodos);
-server.post('/todos', postTodo);
-server.del('/todos/:id', delTodos);
-server.put('/todos/:id', putTodos);
+server.get('/api/todos', getTodos);
+server.post('/api/todos', postTodo);
+server.del('/api/todos/:id', delTodos);
+server.put('/api/todos/:id', putTodos);
 
 // startup
 
